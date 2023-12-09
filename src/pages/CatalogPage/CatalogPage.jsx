@@ -2,11 +2,23 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCatalogCars } from "../../redux/catalogCar/operations";
 import { selectCatalogCars } from "../../redux/catalogCar/selectors";
+import {
+  ButtonLearnMore,
+  CardCar,
+  CatalogCardCar,
+  ImgCar,
+  Info,
+  InfoCar,
+  ModelCar,
+  NameCar,
+  TitleContainer,
+} from "./CardCar.styled";
+import FilterCar from "./FilterCar/FilterCar";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
   const cars = useSelector(selectCatalogCars);
-  console.log(cars[3]);
+  console.log(cars);
   useEffect(() => {
     dispatch(getCatalogCars());
   }, [dispatch]);
@@ -14,26 +26,33 @@ const CatalogPage = () => {
   return (
     <>
       <div>Catalog Car</div>
-      <ul>
+      <FilterCar />
+      <CatalogCardCar>
         {cars.map((car) => {
           const parts = car.address.split(",");
           return (
-            <li key={car.id}>
-              <img src={car.img} alt={car.make}></img>
-              <p>
-                {car.make} <span>{car.model}</span> <span>{car.year}</span>
-              </p>
-              <p>{car.rentalPrice}</p>
-              <p>{parts[1]}</p>
-              <p>{parts[2]}</p>
-              <p>{car.rentalCompany}</p>
-              <p>{car.type}</p>
-              <p>{car.model}</p>
-              <p>{car.accessories[0]}</p>
-            </li>
+            <CardCar key={car.id}>
+              <ImgCar src={car.img} alt={car.make}></ImgCar>
+              <TitleContainer>
+                <NameCar>
+                  {car.make} <ModelCar>{car.model}, </ModelCar>
+                  <span>{car.year}</span>
+                </NameCar>
+                <p>{car.rentalPrice}</p>
+              </TitleContainer>
+              <InfoCar>
+                <Info>{parts[1]}</Info>
+                <Info>{parts[2]}</Info>
+                <Info>{car.rentalCompany}</Info>
+                <Info>{car.type}</Info>
+                <Info>{car.model}</Info>
+                {/* <Info>{car.accessories[1]}</Info> */}
+              </InfoCar>
+              <ButtonLearnMore type="button">Learn more</ButtonLearnMore>
+            </CardCar>
           );
         })}
-      </ul>
+      </CatalogCardCar>
     </>
   );
 };
