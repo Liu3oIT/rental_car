@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCatalogCars } from "../../../redux/catalogCar/selectors";
 import {
   ButtonLearnMore,
@@ -12,23 +12,33 @@ import {
   NameCar,
   TitleContainer,
 } from "../CardCar.styled";
+import { ButtonLoadMore } from "./FilterCar.styled";
+import { getCarId } from "../../../redux/catalogCar/operations";
+import ModalCar from "../../ModalCar/ModalCar";
 
 const FilterComponent = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedValuePrice, setSelectedValuePrice] = useState("");
+  const [visibleItems, setVisibleItems] = useState(12);
   const [listCar, setListCar] = useState("");
+  const [openModal, setOpenModal] = useState(false);
   const cars = useSelector(selectCatalogCars);
+
+  const dispatch = useDispatch();
+
+
 
   const uniqueMakes = [...new Set(cars.map((car) => car.make))];
   const uniquePrice = [...new Set(cars.map((car) => car.rentalPrice))];
   const sortedUniquePrice = uniquePrice.sort((a, b) => a - b);
+
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
   };
+
   const handlePriceSelectChange = (event) => {
     setSelectedValuePrice(event.target.value);
   };
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,6 +50,19 @@ const FilterComponent = () => {
     setListCar(filteredCars);
   };
 
+  const limitedCars = cars.slice(0, visibleItems);
+
+  const handleLoadMore = () => {
+    setVisibleItems((prevVisibleItems) => prevVisibleItems + 12);
+  };
+
+  const handleOpenModalCar = (id) => {
+    dispatch(getCarId(id));
+     setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -84,7 +107,7 @@ const FilterComponent = () => {
       </form>
       {listCar.length === 0 ? (
         <CatalogCardCar>
-          {cars.map((car) => {
+          {limitedCars.map((car) => {
             const parts = car.address.split(",");
             return (
               <CardCar key={car.id}>
@@ -104,7 +127,15 @@ const FilterComponent = () => {
                   <Info>{car.model}</Info>
                   {/* <Info>{car.accessories[1]}</Info> */}
                 </InfoCar>
-                <ButtonLearnMore type="button">Learn more</ButtonLearnMore>
+                <ButtonLearnMore
+                  type="button"
+                  onClick={() => {
+                    handleOpenModalCar(car.id);
+                    setOpenModal(true);
+                  }}
+                >
+                  Learn more
+                </ButtonLearnMore>
               </CardCar>
             );
           })}
@@ -119,7 +150,7 @@ const FilterComponent = () => {
                 <TitleContainer>
                   <NameCar>
                     {car.make} <ModelCar>{car.model}, </ModelCar>
-                    <span>{car.year}</span>
+                    {car.year}
                   </NameCar>
                   <p>${car.rentalPrice}</p>
                 </TitleContainer>
@@ -131,11 +162,25 @@ const FilterComponent = () => {
                   <Info>{car.model}</Info>
                   {/* <Info>{car.accessories[1]}</Info> */}
                 </InfoCar>
-                <ButtonLearnMore type="button">Learn more</ButtonLearnMore>
+                <ButtonLearnMore
+                  type="button"
+                  onClick={() => {
+                    handleOpenModalCar(car.id);
+                    setOpenModal(true);
+                  }}
+                >
+                  Learn more
+                </ButtonLearnMore>
               </CardCar>
             );
           })}
         </CatalogCardCar>
+      )}
+      {visibleItems < cars.length && (
+        <ButtonLoadMore onClick={handleLoadMore}>Load More</ButtonLoadMore>
+      )}
+      {openModal && (
+        <ModalCar onClose={handleCloseModal} isOpenModal={openModal} />
       )}
     </div>
   );

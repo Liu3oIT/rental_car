@@ -8,6 +8,17 @@ export const getCatalogCars = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/rental");
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const getCarId = createAsyncThunk(
+  "api/getCarId",
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.get(`/rental/${id}`);
 
       return response.data;
     } catch (error) {
