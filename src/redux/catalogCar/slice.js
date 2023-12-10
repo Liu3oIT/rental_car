@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCatalogCars } from "./operations";
-
+import { getCarId, getCatalogCars } from "./operations";
 
 const initialState = {
   cars: [],
+  car: null,
 };
 
 const catalogCars = createSlice({
@@ -15,7 +15,9 @@ const catalogCars = createSlice({
       .addCase(getCatalogCars.fulfilled, (state, action) => {
         state.cars = action.payload;
       })
-    
+      .addCase(getCarId.fulfilled, (state, action) => {
+        state.car = action.payload;
+      });
   },
 });
 

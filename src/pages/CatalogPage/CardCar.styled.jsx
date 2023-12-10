@@ -12,6 +12,7 @@ export const CatalogCardCar = styled.ul`
   list-style: none;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 100px;
 `;
 
 export const CardCar = styled.li`
@@ -20,11 +21,7 @@ export const CardCar = styled.li`
   border-radius: 12px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-  &:hover {
-    cursor: click;
-    -webkit-transform: scale(1.03);
-    transform: scale(1.03);
-  }
+ 
 `;
 export const ImgCar = styled.img`
   width: 100%;
@@ -77,4 +74,10 @@ export const ButtonLearnMore = styled.button`
   border-radius: 12px;
   color: #fff;
   border-color: transparent;
+  &:hover {
+    background: #0b44cd;
+    cursor: click;
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
 `;

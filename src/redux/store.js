@@ -27,6 +27,7 @@ import { carsReducer } from "./catalogCar/slice";
 export const store = configureStore({
   reducer: {
     cars: carsReducer,
+    car: carsReducer,
   },
   // middleware,
 });
