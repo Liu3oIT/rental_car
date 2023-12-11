@@ -18,13 +18,14 @@ export const CatalogCardCar = styled.ul`
 export const CardCar = styled.li`
   width: 274px;
   height: 426px;
+  position: relative;
   border-radius: 12px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
- 
 `;
 export const ImgCar = styled.img`
   width: 100%;
+  
   height: 268px;
   border-radius: 12px;
   object-fit: cover;
