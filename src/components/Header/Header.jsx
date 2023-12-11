@@ -10,15 +10,21 @@ const Header = () => {
   return (
     <>
       <HeaderContainer>
-        <NavLinkButton to={"/"} state={{ from: location.pathname }}>
+        <NavLinkButton to={"/rental_car"} state={{ from: location.pathname }}>
           <NavigationButton> Home Page</NavigationButton>
         </NavLinkButton>
 
-        <NavLinkButton to={"/catalog"} state={{ from: location.pathname }}>
+        <NavLinkButton
+          to={"/catalog"}
+          state={{ from: location.pathname }}
+        >
           <NavigationButton>Catalog</NavigationButton>
         </NavLinkButton>
 
-        <NavLinkButton to={"/favorite"} state={{ from: location.pathname }}>
+        <NavLinkButton
+          to={"/favorite"}
+          state={{ from: location.pathname }}
+        >
           <NavigationButton> Favorite</NavigationButton>
         </NavLinkButton>
       </HeaderContainer>
