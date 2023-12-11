@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkrental_car=self.webpackChunkrental_car||[]).push([[680],{946:(e,r,a)=>{a.d(r,{w:()=>t});var n,c=a(168);const t=a(686).Z.h2(n||(n=(0,c.Z)(["\n  text-align: center;\n"])))},680:(e,r,a)=>{a.r(r),a.d(r,{default:()=>t});var n=a(946),c=a(184);const t=()=>(0,c.jsx)(n.w,{children:"Wellcome, here you can find a car for temporary trips"})}}]);
+//# sourceMappingURL=680.9c300bd4.chunk.js.map
