@@ -139,3 +139,19 @@ export const RentalButtonModal = styled.button`
     transform: scale(1.03);
   }
 `;
+
+export const CloseButtonModal = styled.button`
+  position: absolute;
+  top: 12px;
+
+  left: 500px;
+  font-size: 14px;
+  border-color: transparent;
+  background: transparent;
+  &:hover {
+    color: #0b44cd;
+    cursor: click;
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+`;

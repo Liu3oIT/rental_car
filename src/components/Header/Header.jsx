@@ -1,18 +1,27 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import {
+  HeaderContainer,
+  NavLinkButton,
+  NavigationButton,
+} from "./Header.styled";
 
 const Header = () => {
   const location = useLocation();
   return (
     <>
-      <NavLink to={"/"} state={{ from: location.pathname }}>
-        <button>Home Page</button>
-      </NavLink>
-      <NavLink to={"/catalog"} state={{ from: location.pathname }}>
-        <button>Catalog</button>
-      </NavLink>
-      <NavLink to={"/favorite"} state={{ from: location.pathname }}>
-        <button>Favorite</button>
-      </NavLink>
+      <HeaderContainer>
+        <NavLinkButton to={"/"} state={{ from: location.pathname }}>
+          <NavigationButton> Home Page</NavigationButton>
+        </NavLinkButton>
+
+        <NavLinkButton to={"/catalog"} state={{ from: location.pathname }}>
+          <NavigationButton>Catalog</NavigationButton>
+        </NavLinkButton>
+
+        <NavLinkButton to={"/favorite"} state={{ from: location.pathname }}>
+          <NavigationButton> Favorite</NavigationButton>
+        </NavLinkButton>
+      </HeaderContainer>
     </>
   );
 };
