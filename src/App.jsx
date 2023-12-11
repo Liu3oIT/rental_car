@@ -1,9 +1,12 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import CatalogPage from "./pages/CatalogPage/CatalogPage";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import Layout from "./components/Layout/Layout";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+
+
+
 
 export const App = () => {
   return (
@@ -14,6 +17,7 @@ export const App = () => {
             <Route index element={<HomePage />} />
             <Route path="catalog" element={<CatalogPage />} />
             <Route path="favorite" element={<FavoritePage />} />
+            <Route path="*" element={<Navigate to={"/"} />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
