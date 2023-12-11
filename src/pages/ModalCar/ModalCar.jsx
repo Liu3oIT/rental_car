@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import {
   AccessoriesModal,
   Backdrop,
+  CloseButtonModal,
   DescriptionModal,
   ImgModal,
   InfoCarModal,
@@ -39,8 +40,11 @@ const ModalCar = ({ isOpenModal, onClose }) => {
   return (
     <>
       {oneCar ? (
-        <Backdrop onClick={onClose} openModal={isOpenModal}>
+        <Backdrop>
           <Modal>
+            <CloseButtonModal onClick={onClose} openModal={isOpenModal}>
+              x
+            </CloseButtonModal>
             <ImgModal src={oneCar.img} alt="" />
             <NameCarModal>
               {oneCar.make} <ModelCarModal>{oneCar.model}, </ModelCarModal>
@@ -59,7 +63,7 @@ const ModalCar = ({ isOpenModal, onClose }) => {
             <AccessoriesModal>Accessories and functionalities</AccessoriesModal>
             <InfoCarModal>
               {oneCar.accessories.map((element, index) => (
-                <InfoModal key={index} > {element} </InfoModal>
+                <InfoModal key={index}> {element} </InfoModal>
               ))}
             </InfoCarModal>
             <RentalConditionsModal>
@@ -73,10 +77,10 @@ const ModalCar = ({ isOpenModal, onClose }) => {
               <RentalConteinerModal>
                 <RentalInfoModal>Security deposite required </RentalInfoModal>
                 <RentalInfoModal>
-                  Mileage: <RentalInfo>25</RentalInfo>
+                  Mileage: <RentalInfo>{oneCar.mileage}</RentalInfo>
                 </RentalInfoModal>
                 <RentalInfoModal>
-                  Price: <RentalInfo>25</RentalInfo>
+                  Price: <RentalInfo>{oneCar.rentalPrice}$</RentalInfo>
                 </RentalInfoModal>
               </RentalConteinerModal>
             </RentalConditionsModal>
